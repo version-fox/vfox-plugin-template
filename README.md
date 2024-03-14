@@ -1,0 +1,1 @@
+# vfox-plugin-template
