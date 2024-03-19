@@ -8,8 +8,8 @@ PLUGIN.name = "java"
 PLUGIN.author = "Lihan"
 --- Plugin version
 PLUGIN.version = "0.0.1"
--- Update URL
-PLUGIN.updateUrl = "{URL}/sdk.lua"
+--- Plugin repository
+PLUGIN.repository = "https://github.com/version-fox/vfox-plugin-template"
 
 --- !!! OPTIONAL !!!
 --- Plugin description
@@ -20,4 +20,9 @@ PLUGIN.minRuntimeVersion = "0.2.2"
 PLUGIN.legacyFilenames = {
     ".nvmrc",
     ".node-version",
+}
+
+PLUGIN.notes ={
+    "some thing",
+    "some thing",
 }
