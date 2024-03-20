@@ -5,9 +5,8 @@ on:
     tags: [ 'v*' ]
 
 jobs:
-  build:
+  generate-manifest-json:
     runs-on: ubuntu-latest
-
     steps:
       - name: Set repo name
         run: |
@@ -30,17 +29,32 @@ jobs:
           sudo lua -e '
           require("metadata"); 
           local dkjson = require("dkjson"); 
-          PLUGIN.download_url = "https://github.com/${{ github.repository }}/releases/download/${{ github.ref }}/${{ env.REPO_NAME }}_${{ env.VERSION }}.zip"; 
+          PLUGIN.download_url = "https://github.com/${{ github.repository }}/releases/download/v${{ env.VERSION }}/${{ env.REPO_NAME }}_${{ env.VERSION }}.zip"; 
           local str = dkjson.encode(PLUGIN); 
           print(str)' > manifest.json
           cat manifest.json
+      - name: Upload JSON file
+        uses: actions/upload-artifact@v2
+        with:
+          name: manifest
+          path: manifest.json
+  release-plugin-and-manifest:
+      needs: generate-manifest-json
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Download JSON file
+        uses: actions/download-artifact@v2
+        with:
+          name: manifest
       - name: Compress build files
         uses: thedoctor0/zip-release@0.7.6
         with:
           type: "zip"
           directory: "./"
           filename: "${{ env.REPO_NAME }}_${{ env.VERSION }}.zip"
-          exclusions: ".git*"
+          exclusions: "*.git* "
       - name: Publish release
         uses: svenstaro/upload-release-action@v2
         with:
