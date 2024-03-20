@@ -36,12 +36,13 @@ jobs:
           PLUGIN.download_url = "https://github.com/${{ github.repository }}/releases/download/${{ github.ref }}/${REPO_NAME}_v${VERSION}.zip"; 
           local str = dkjson.encode(PLUGIN); 
           print(str)' > manifest.json
+          cat manifest.json
       - name: Compress build files
         uses: thedoctor0/zip-release@main
         with:
           type: "zip"
           directory: "artifacts"
-          filename: "${REPO_NAME}_${{ github.ref }}.zip"
+          filename: ${REPO_NAME}_${VERSION}.zip
 #          exclusions: "*.json *.pdb"
       - name: Publish release
         uses: svenstaro/upload-release-action@v2
