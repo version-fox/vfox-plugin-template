@@ -22,7 +22,8 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install luarocks
-          luarocks install --local dkjson
+          luarocks install dkjson
+          echo "PATH=$PATH:$(lua -e 'print(package.path:match("(.-);"))'" >> $GITHUB_ENV
 
       - name: Run script
         run: |
