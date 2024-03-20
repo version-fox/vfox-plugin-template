@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set repo name
+        run: |
+          echo "REPO_NAME=${{ github.repository#*/ }}" >> $GITHUB_ENV
+          echo "VERSION=${{ github.ref#refs/tags/v }}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
 
       - name: Set up Lua
@@ -29,7 +33,7 @@ jobs:
           sudo lua -e '
           require("metadata"); 
           local dkjson = require("dkjson"); 
-          PLUGIN.download_url = "https://github.com/${{ github.repository }}/releases/download/${{ github.ref }}/${{ github.repository }}_${{ github.ref }}.zip"; 
+          PLUGIN.download_url = "https://github.com/${{ github.repository }}/releases/download/${{ github.ref }}/${REPO_NAME}_v${VERSION}.zip"; 
           local str = dkjson.encode(PLUGIN); 
           print(str)' > manifest.json
       - name: Compress build files
@@ -37,14 +41,14 @@ jobs:
         with:
           type: "zip"
           directory: "artifacts"
-          filename: "${{ github.repository }}_${{ github.ref }}.zip"
+          filename: "${REPO_NAME}_${{ github.ref }}.zip"
 #          exclusions: "*.json *.pdb"
       - name: Publish release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./${{ env.artifact }}/${{ github.repository }}_${{ github.ref }}.zip
-          tag: ${{ github.ref }}
+          file: ./${{ env.artifact }}/${REPO_NAME}_${VERSION}.zip
+          tag: v${VERSION}
           file_glob: true
       - name: Publish manifest
         uses: svenstaro/upload-release-action@v2
