@@ -41,21 +41,21 @@ jobs:
         uses: thedoctor0/zip-release@main
         with:
           type: "zip"
-          directory: "artifacts"
+          directory: "./"
           filename: "${{ env.REPO_NAME }}_${{ env.VERSION }}.zip"
 #          exclusions: "*.json *.pdb"
       - name: Publish release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./${{ env.artifact }}/${{ env.REPO_NAME }}_${{ env.VERSION }}.zip
+          file: ./${{ env.REPO_NAME }}_${{ env.VERSION }}.zip
           tag: v${VERSION}
           file_glob: true
       - name: Publish manifest
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./manifest*.json
+          file: ./manifest.json
           tag: "manifest"
           overwrite: true
           file_glob: true
