@@ -23,7 +23,6 @@ jobs:
         run: |
           sudo apt-get install luarocks
           sudo luarocks install dkjson
-          echo "PATH=$PATH:$(lua -e 'print(package.path:match("(.-);"))'" >> $GITHUB_ENV
 
       - name: Run script
         run: |
