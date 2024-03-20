@@ -2,10 +2,7 @@ name: generate and publish manifest
 
 on:
   push:
-    branches: [ main ]
-
-env:
-  artifact: vfox-plugin
+    tags: [ 'v*' ]
 
 jobs:
   build:
@@ -28,7 +25,7 @@ jobs:
           sudo apt-get install luarocks
           sudo luarocks install dkjson
 
-      - name: Run script
+      - name: Generate manifest
         run: |
           sudo lua -e '
           require("metadata"); 
@@ -38,18 +35,18 @@ jobs:
           print(str)' > manifest.json
           cat manifest.json
       - name: Compress build files
-        uses: thedoctor0/zip-release@main
+        uses: thedoctor0/zip-release@0.7.6
         with:
           type: "zip"
           directory: "./"
           filename: "${{ env.REPO_NAME }}_${{ env.VERSION }}.zip"
-#          exclusions: "*.json *.pdb"
+          exclusions: ".git*"
       - name: Publish release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./${{ env.REPO_NAME }}_${{ env.VERSION }}.zip
-          tag: v${VERSION}
+          tag: v${{ env.VERSION }}
           file_glob: true
       - name: Publish manifest
         uses: svenstaro/upload-release-action@v2
