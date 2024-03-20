@@ -1,0 +1,56 @@
+name: generate and publish manifest
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  artifact: vfox-plugin
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Lua
+        uses: leafo/gh-actions-lua@v8
+        with:
+          luaVersion: '5.3.5'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install luarocks
+          sudo luarocks install dkjson
+
+      - name: Run script
+        run: |
+          lua -e '
+          require("metadata"); 
+          local dkjson = require("dkjson"); 
+          PLUGIN.download_url = "https://github.com/your-username/your-repo/releases/download/${{ github.ref }}/${{ github.repository }}_${{ github.ref }}.zip"; 
+          local str = dkjson.encode(PLUGIN); 
+          print(str)' > manifest.json
+      - name: Compress build files
+        uses: thedoctor0/zip-release@main
+        with:
+          type: "zip"
+          directory: "artifacts"
+          filename: "${{ github.repository }}_${{ github.ref }}.zip"
+#          exclusions: "*.json *.pdb"
+      - name: Publish release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./${{ env.artifact }}/${{ github.repository }}_${{ github.ref }}.zip
+          tag: ${{ github.ref }}
+          file_glob: true
+      - name: Publish manifest
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./manifest*.json
+          tag: "manifest"
+          overwrite: true
+          file_glob: true
