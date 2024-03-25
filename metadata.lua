@@ -29,7 +29,7 @@ NOTE:
     If configured, vfox will check for updates to the plugin at this address,
     otherwise it will check for updates at the global registry.
 
-    If you want use the global registry to distribute your plugin, you can ignore this field.
+    If you want use the global registry to distribute your plugin, you can remove this field.
 
     If you develop a plugin based on the template, which will automatically generate a manifest file by CI,
     you can set this address to the manifest file address, so that the plugin can be updated automatically.
