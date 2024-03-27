@@ -4,8 +4,6 @@ PLUGIN = {}
 --- !!! MUST BE SET !!!
 --- Plugin name
 PLUGIN.name = "your plugin name"
---- Plugin author
-PLUGIN.author = "your name"
 --- Plugin version
 PLUGIN.version = "0.0.1"
 --- Plugin homepage
