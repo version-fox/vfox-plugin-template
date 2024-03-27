@@ -57,7 +57,7 @@ jobs:
         with:
           type: "zip"
           directory: "./"
-          filename: "${{ env.REPO_NAME }}_${{ env.VERSION }}.zip"
+          filename: "${{ env.REPO_NAME }}-${{ env.VERSION }}.zip"
           exclusions: "*.git* manifest.json"
       - name: Publish release
         uses: svenstaro/upload-release-action@v2
