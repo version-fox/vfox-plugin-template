@@ -5,7 +5,6 @@ local util = require("util")
 --- @return table Descriptions of available versions and accompanying tool descriptions
 function PLUGIN:Available(ctx)
     util:DoSomeThing()
-    local runtimeVersion = ctx.runtimeVersion
     return {
         {
             version = "xxxx",

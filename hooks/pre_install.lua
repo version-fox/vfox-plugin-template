@@ -5,7 +5,6 @@
 --- @return table Version information
 function PLUGIN:PreInstall(ctx)
     local version = ctx.version
-    local runtimeVersion = ctx.runtimeVersion
     return {
         --- Version number
         version = "xxx",
