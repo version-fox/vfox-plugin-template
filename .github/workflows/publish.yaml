@@ -30,14 +30,14 @@ jobs:
       - name: Generate manifest
         run: |
           sudo lua -e '
-          require("metadata"); 
-          local dkjson = require("dkjson"); 
-          PLUGIN.downloadUrl = "https://github.com/${{ github.repository }}/releases/download/v${{ env.VERSION }}/${{ env.REPO_NAME }}-${{ env.VERSION }}.zip"; 
-          local str = dkjson.encode(PLUGIN); 
+          require("metadata");
+          local dkjson = require("dkjson");
+          PLUGIN.downloadUrl = "https://github.com/${{ github.repository }}/releases/download/v${{ env.VERSION }}/${{ env.REPO_NAME }}-${{ env.VERSION }}.zip";
+          local str = dkjson.encode(PLUGIN);
           print(str)' > manifest.json
           cat manifest.json
       - name: Upload JSON file
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: manifest
           path: manifest.json
@@ -52,7 +52,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Download JSON file
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: manifest
       - name: Compress build files
