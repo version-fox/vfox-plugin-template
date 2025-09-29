@@ -1,21 +1,21 @@
-# 发布 Release vX.X.X
+# Release vX.X.X
 
-## 变更内容
+## Changes
 
-请简要描述本次发布包含的主要变更：
+Please briefly describe the main changes included in this release:
 
-- [ ] 新功能/修复说明
-- [ ] 依赖更新说明
-- [ ] 其他重要信息
+- [ ] New features/fixes description
+- [ ] Dependency updates description
+- [ ] Other important information
 
-## 检查项
+## Checklist
 
-- [ ] 已更新 `CHANGELOG.md`
-- [ ] 所有测试均已通过
-- [ ] 已完成必要的文档更新
-- [ ] 版本号已正确提升
-- [ ] 与相关 Issue/讨论关联（如有）
+- [ ] Updated `CHANGELOG.md`
+- [ ] All tests passed
+- [ ] Necessary documentation updated
+- [ ] Version number correctly bumped
+- [ ] Linked to relevant Issue/discussion (if any)
 
-## 相关链接
+## Related Links
 
-- Issue/讨论链接：
+- Issue/discussion link:
