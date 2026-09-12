@@ -1,4 +1,3 @@
-
 local util = {}
 
 function util:DoSomeThing()
