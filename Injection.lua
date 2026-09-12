@@ -14,4 +14,3 @@ RUNTIME = {
     --- Plugin directory
     pluginDirPath = "",
 }
-

@@ -17,6 +17,22 @@ Keep runtime resources under `lib/`. Shared checks validate metadata, required h
 files and Lua syntax and build the same package used for publishing. They do not
 run lifecycle hooks or install SDKs. See the [package contract](https://github.com/version-fox/plugin-manifest-action#插件包与检查范围).
 
+## Lua checks and formatting
+
+Use [StyLua 2.5.2](https://github.com/JohnnyMorganz/StyLua/releases/tag/v2.5.2)
+with the included `stylua.toml` configuration:
+
+```shell
+stylua .
+stylua --check .
+```
+
+The shared PR check validates metadata, required hooks and Lua 5.1 syntax.
+Repositories with `stylua.toml` also receive a read-only format check after the
+shared tool release containing that check is published. Existing plugins can opt
+in by adding this configuration and formatting their Lua files together.
+Plugin behavior tests remain separate from syntax and style checks.
+
 ## Publish a plugin
 
 Merge your changes into the default branch, then open **Actions → Plugin → Run

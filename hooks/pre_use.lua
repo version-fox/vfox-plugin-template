@@ -8,7 +8,7 @@ function PLUGIN:PreUse(ctx)
     local previousVersion = ctx.previousVersion
 
     --- installed sdks
-    local sdkInfo = ctx.installedSdks['version']
+    local sdkInfo = ctx.installedSdks["version"]
     local path = sdkInfo.path
     local name = sdkInfo.name
     local version = sdkInfo.version

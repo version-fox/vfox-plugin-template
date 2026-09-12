@@ -13,8 +13,8 @@ function PLUGIN:Available(ctx)
                 {
                     name = "npm",
                     version = "8.8.8",
-                }
-            }
-        }
+                },
+            },
+        },
     }
 end

@@ -13,7 +13,6 @@ PLUGIN.license = "Apache 2.0"
 --- Plugin description
 PLUGIN.description = "your plugin description"
 
-
 --- !!! OPTIONAL !!!
 --[[
 NOTE:
@@ -35,10 +34,8 @@ NOTE:
  --]]
 PLUGIN.manifestUrl = "https://github.com/version-fox/vfox-plugin-template/releases/download/manifest/manifest.json"
 -- Some things that need user to be attention!
-PLUGIN.notes = {
-}
+PLUGIN.notes = {}
 
 --- List legacy configuration filenames for determining the specified version of the tool.
 --- such as ".node-version", ".nvmrc", etc.
-PLUGIN.legacyFilenames = {
-}
+PLUGIN.legacyFilenames = {}

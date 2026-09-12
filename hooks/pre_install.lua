@@ -33,7 +33,7 @@ function PLUGIN:PreInstall(ctx)
                 sha1 = "xxx",
                 --- sha512 checksum [optional]
                 sha512 = "xx",
-            }
-        }
+            },
+        },
     }
 end
