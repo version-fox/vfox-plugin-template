@@ -5,7 +5,7 @@ PLUGIN = {}
 --- Plugin name
 PLUGIN.name = "your plugin name"
 --- Plugin version
-PLUGIN.version = "0.0.1"
+PLUGIN.version = "0.0.2"
 --- Plugin homepage
 PLUGIN.homepage = "https://github.com/version-fox/vfox-plugin-template"
 --- Plugin license, please choose a correct license according to your needs.
