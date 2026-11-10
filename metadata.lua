@@ -33,6 +33,25 @@ NOTE:
 
  --]]
 PLUGIN.manifestUrl = "https://github.com/version-fox/vfox-plugin-template/releases/download/manifest/manifest.json"
+--[[
+NOTE:
+    Hints shown by `vfox use` and `vfox doctor` (vfox 1.1.0 and later) when a
+    command of this SDK is shadowed by another executable earlier in PATH.
+    Each entry matches part of the shadowing executable's path
+    (case-insensitive) and explains how to hand the command back to vfox.
+    Detecting the shadowing itself is done by vfox; there is no need to scan
+    PATH in `PreUse` for this. Older vfox versions ignore this field, so
+    enabling it needs no `PLUGIN.minRuntimeVersion` bump.
+    Uncomment to enable.
+    See https://github.com/version-fox/vfox/blob/main/docs/plugins/create/howto.md#shadowhints
+ --]]
+-- PLUGIN.shadowHints = {
+--     {
+--         match = "other-manager",
+--         message = "The other manager installed its own tool. Remove it so vfox's tool runs.",
+--         url = "https://example.com/troubleshooting#shadowed",
+--     },
+-- }
 -- Some things that need user to be attention!
 PLUGIN.notes = {}
 
